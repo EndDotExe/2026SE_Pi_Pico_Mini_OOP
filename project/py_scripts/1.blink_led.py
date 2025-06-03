@@ -1,7 +1,6 @@
 from machine import Pin
 from time import sleep
 
-#have a little delay
 sleep(0.1)
 
 led_pin = 25
