@@ -10,7 +10,7 @@ I2C_ADDR = i2c.scan()[0]
 lcd = I2cLcd(i2c, I2C_ADDR, 2, 16)
 
 while True:
-    lcd.putstr("are you sure?")
+    lcd.putstr("are you sure? \n pertty sure... threw a trash bag.. into space")
     sleep(5)
     lcd.clear()
     sleep(1)
