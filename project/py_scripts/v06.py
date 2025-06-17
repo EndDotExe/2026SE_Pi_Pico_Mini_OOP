@@ -1,9 +1,11 @@
 from audio_notification import Audio_Notification
 from machine import Pin
-import time
+from time import sleep
 
 audio = Audio_Notification()
 
 
-# testing beep()
-beep()
+# testing warning_on()
+print("Testing: warning_on()")
+warning_on()
+sleep(0.1)

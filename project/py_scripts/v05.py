@@ -1,18 +1,17 @@
-from lib import pedestrian_button
+from time import sleep
 from machine import Pin
-import time
+from pedestrian_button import Pedestrian_Button
 
-pedestrian = pedestrian_button.Pedestrian_Button
+
+button = Pedestrian_Button
 
 # check button_state()
-print("Testing: button_state")
-button_state()
-print("( :3 )")
+print("Testing: button_state()")
+button.button_state()
+print(button.button_state())
 
 
 # check callback info
 print("Testing: callback()")
-pedestrian_button.callback()
-
-
-# thats the only function in the class what do i do......
+button.callback()
+print(button.current_time)
