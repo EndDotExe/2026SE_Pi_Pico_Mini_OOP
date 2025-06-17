@@ -23,15 +23,18 @@ if led.value == 0:
 sleep(0.5)
 
 # check toggle - on
-print("Testing: toggle()")
+print("Testing: toggle() - on state")
 led.toggle()
 if led.value == 1:
     print("Test passed - Toggle: on()")
 sleep(0.5)
 
 # check toggle - off
-print("Testing: toggle()")
+print("Testing: toggle() - off state")
 led.toggle()
 if led.value == 0:
     print("Test passed - Toggle: off()")
 sleep(0.5)
+
+print("Testing: flash()")
+led.flash()

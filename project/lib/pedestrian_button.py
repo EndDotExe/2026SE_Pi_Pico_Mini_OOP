@@ -2,7 +2,7 @@ from machine import Pin
 import time
 
 class Pedestrian_Button(Pin):
-# chikd class inherits the parent 'Pin' class
+# child class inherits the parent 'Pin' class
     def __init__(self, pin, debug):
         super().__init__(pin, Pin.IN, Pin.PULL_DOWN)
         self.__debug = debug
