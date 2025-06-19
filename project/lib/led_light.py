@@ -27,7 +27,7 @@ class Led_light(Pin):
             self.on()
         elif self.value() == 1:
             self.off()
-
+    
     @property
     def led_light_state(self):
         return self.value()
@@ -38,10 +38,9 @@ class Led_light(Pin):
             self.off()
         elif value == 0:
             self.on()
-
-
-def flash(self):
-    now = time()
-    if self.__flashing and now - self.__last_toggle_time >= 0.5:
-        self.toggle()
-        self.__last_toggle_time = now
+    
+    def flash(self):
+        now = time()
+        if self.__flashing and now - self.__last_toggle_time >= 0.5:
+            self.toggle()
+            self.__last_toggle_time = now
