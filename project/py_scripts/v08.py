@@ -22,6 +22,7 @@ walkers = PedestrianSubsystem(led_pedestrian_red, led_pedestrian_green, pedestri
 control = Controller(ped_red, ped_green, car_red, car_amber, car_green, button, buzzer, debug)
 
 
+"""
 def Traffic_Subsystem_driver():
 # Red light test
     print("Testing Traffic Light In 3 seconds")
@@ -71,7 +72,7 @@ def Pedestrian_Subsystem_driver():
 
 Pedestrian_Subsystem_driver()
 sleep(1)
-
+"""
 def Controller_Subsystem_driver():
     # Idle state test
     print("Testing Idle State in 3 seconds")
