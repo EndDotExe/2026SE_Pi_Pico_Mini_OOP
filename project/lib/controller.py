@@ -80,27 +80,62 @@ class Controller:
             print("System: IDLE state")
         self.__pedestrian_signals.show_stop()
         self.__traffic_lights.show_green()
+        self.state = "IDLE"
 
     def set_change_state(self):
         if self.__debug:
             print("System: CHANGE state")
         self.__pedestrian_signals.show_stop()
         self.__traffic_lights.show_amber()
+        self.state = "CHANGE"
 
     def set_walk_state(self):
         if self.__debug:
             print("System: WALK state")
         self.__pedestrian_signals.show_walk()
         self.__traffic_lights.show_red()
+        self.state = "WALK"
 
     def set_warning_state(self):
         if self.__debug:
             print("System: IDLE state")
         self.__pedestrian_signals.show_warning()
         self.__traffic_lights.show_red()
+        self.state = "WARNING"
 
     def error_state(self):
         if self.__debug:
             print("System: ERROR state")
         self.__pedestrian_signals.show_warning()
         self.__traffic_lights.show_amber()
+        self.state = "ERROR"
+
+    def update(self):
+        time_now = time.now()
+        print("Running")
+        
+        if self.state == "IDLE":
+            self.set_idle_state()
+            if self.__pedestrian_signals.is_button_pressed():
+                # give the button a cooldown so it cant be held at changing
+                if self.last_change_time <= 5:
+                    self.set_idle_state()
+                # wait a little before setting the state
+                sleep(0.5)
+                self.set_change_state()
+                self.last_change_time = time_now
+                self.state = "CHANGE"
+                
+        elif self.state == "CHANGE":
+            self.set_change_state()
+
+            if self.last_change_time - time_now >= 10:
+                self.set_walk_state()
+                self.last_change_time = time_now
+                sleep(5)
+                self.set_warning_state()
+                sleep(5)
+                self.state = "IDLE"
+        else: self.error_state()
+
+        

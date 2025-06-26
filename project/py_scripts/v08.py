@@ -4,6 +4,8 @@ from audio_notification import Audio_Notification
 from controller import TrafficLightSubsystem, PedestrianSubsystem, Controller
 from time import sleep, time
 
+debug = False
+
 # pedestrian lights
 led_pedestrian_red = Led_light(19, True, True)
 led_pedestrian_green = Led_light(17, False, True)
@@ -19,7 +21,7 @@ buzzer = Audio_Notification(27, True)
 
 driver = TrafficLightSubsystem(led_traffic_red, led_traffic_amber, led_traffic_green, False)
 walkers = PedestrianSubsystem(led_pedestrian_red, led_pedestrian_green, pedestrian_button, buzzer)
-control = Controller(ped_red, ped_green, car_red, car_amber, car_green, button, buzzer, debug)
+control = Controller(led_pedestrian_red, led_pedestrian_green, led_traffic_green, led_traffic_amber, led_traffic_red, pedestrian_button, buzzer, True)
 
 
 """
@@ -73,38 +75,40 @@ def Pedestrian_Subsystem_driver():
 Pedestrian_Subsystem_driver()
 sleep(1)
 """
+
+
 def Controller_Subsystem_driver():
     # Idle state test
     print("Testing Idle State in 3 seconds")
     sleep(3)
     control.set_idle_state()
     print("Pass if TrafficGreen ON, PedestrianRed OFF")
-    sleep(2)
+    sleep(4)
 
     # Change state test
     print("Testing Change State in 3 seconds")
     sleep(3)
     control.set_idle_state()
     print("Pass if TrafficAMBER ON, PedestrianRED ON")
-    sleep(2)
+    sleep(4)
 
     # Walk state test
     print("Testing Walk State in 3 seconds")
     sleep(3)
     control.set_idle_state()
     print("Pass if TrafficRED ON, PedestrianGREEN ON")
-    sleep(2)
+    sleep(4)
 
     # Warning state test
     print("Testing Warning State in 3 seconds")
     sleep(3)
     control.set_idle_state()
     print("Pass if TrafficRED ON, PedestrianRED FLASHING")
-    sleep(2)
+    sleep(4)
 
     # Error state test
     print("Testing Error State in 3 seconds")
     sleep(3)
     control.set_idle_state()
     print("Pass if TrafficAMBER ON, PedestrianRed FLASHING")
-    sleep(2)
+    sleep(4)
